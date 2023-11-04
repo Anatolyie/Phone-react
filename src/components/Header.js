@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { BsCart2 } from 'react-icons/bs'
+import { BsHeart } from 'react-icons/bs'
+import { LiaUserCircle } from 'react-icons/lia'
+
 
 function Header({ onClickCart }) {
 
@@ -19,14 +23,16 @@ function Header({ onClickCart }) {
         <div>
             <ul className="header-right">
                 <li onClick={onClickCart} className='header-right__list'>
-                    <img src="/img/cart.svg" alt="logo" width={18} height={18} className='header-right__list-img'/>
+                    <BsCart2 className='header-right__list-img'/>
                     <span>100$</span>
                 </li>
                 <li> 
-                    <img src="/img/heart.svg" alt="logo" width={18} height={18} className='header-right__list-img'/>
+                    <Link to="/favorite">
+                        <BsHeart className='header-right__list-img header-right__list-relative'/>
+                    </Link>
                 </li>
                 <li> 
-                    <img src="/img/user.svg" alt="logo" width={18} height={18} className='header-right__list-img'/>
+                    <LiaUserCircle className='header-right__list-img, header-right__list-user header-right__list-relative'/>
                 </li>
             </ul>
         </div>

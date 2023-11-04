@@ -1,4 +1,4 @@
-
+import { CiSearch } from 'react-icons/ci'
 
 function SubHeader({ searchValue, setSearchValue }) {
 
@@ -9,9 +9,9 @@ function SubHeader({ searchValue, setSearchValue }) {
     return (
         <div className="content">
         <div className='content-item'>
-            <h1 className='content-title'>{searchValue ? `Poisk po zaprosu: ${searchValue}` : 'All Articles'}</h1>
+            <h1 className='content-title'>{searchValue ? `Search by request: ${searchValue}` : 'All Articles'}</h1>
             <div className='content-search'>
-              <img src="/img/search.svg" alt="search" />
+              <CiSearch />
               <input 
                 onChange={onChangeSearchValue}
                 value={searchValue}

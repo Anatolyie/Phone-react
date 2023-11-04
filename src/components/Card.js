@@ -1,9 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
+import ContentLoader from 'react-content-loader';
 
-function Card({ name, image, price, onFavorite, onPlus}) {
+import { MdFavorite } from 'react-icons/md'
+import { MdFavoriteBorder } from 'react-icons/md'
+import { BsPlus } from 'react-icons/bs'
+import { AiFillCheckSquare } from 'react-icons/ai'
+
+function Card({ name, image, price, onPlus, onFavorite }) {
     const [isAdded, setIsAdded] = useState(false);
-    const [isFavorite, setIsFavorite] = useState();
+    const [isFavorite, setIsFavorite] = useState(false);
 
     const onClickPlus = () => {
         onPlus({ name, image, price })
@@ -11,14 +17,15 @@ function Card({ name, image, price, onFavorite, onPlus}) {
     };
 
     const onClickFavorite = () => {
+        onFavorite({ name, image, price })
         setIsFavorite(!isFavorite);
-        onFavorite({ name, image, price });  
-    };
+    }; 
+    
 
     return (
-        <div className="card">
+    <div className="card">
         <div className="card-favorite" onClick={onClickFavorite}>
-        <img src={isFavorite ? 'img/liked.svg' : "/img/unliked.svg"} alt="unliked" />
+            {isFavorite ?  <MdFavorite  className='card-favorite__added'/> : <MdFavoriteBorder/> }
         </div>
         <img src={image} alt="Articles" width={133} height={112} className='card-articles'/>
         <h5>{name}</h5>
@@ -27,7 +34,7 @@ function Card({ name, image, price, onFavorite, onPlus}) {
                 <span>Price</span>
                 <b>{price}$</b>
             </div>
-                <img onClick={() => onClickPlus()} className="card-btn" src={isAdded ? '/img/btn-checked.svg' : '/img/plus.svg'} alt="plus"/>
+                {!isAdded ? <BsPlus onClick={() => onClickPlus()} className="card-plus"/> : <AiFillCheckSquare onClick={() => onClickPlus()} className='card-checked'/>}
         </div>
     </div>
     );

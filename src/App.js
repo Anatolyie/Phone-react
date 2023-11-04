@@ -21,13 +21,19 @@ function App() {
     setCartItems(newCartItems);
   };
 
+  const onRemoveItem = (id) => {
+    // axios.delete(`https://64fb67f3cb9c00518f7afc7b.mockapi.io/api/1/Cart/${id}`)
+    setCartItems((prev) => prev.filter((item) => item.id !== id))
+    console.log(id)
+  }
+
   return (
     <div className="wrapper">
-    <Header onClickCart={() => setCartOpen(true)} cartItems={cartItems}/>
-    { cartOpened ? <Sidebar  items={cartItems} onClose={() => setCartOpen(false)}/> : null}
+    <Header onClickCart={() => setCartOpen(true)} cartItems={cartItems} />
+    { cartOpened ? <Sidebar  items={cartItems} onClose={() => setCartOpen(false)} onRemove={onRemoveItem}/> : null}
     <SubHeader searchValue={searchValue} setSearchValue={setSearchValue}/>
     <Routes>
-      <Route path='/' element={<Home onCartItemsChange={handleCartItemsChange} searchValue={searchValue}/>}/>
+      <Route path='/' element={<Home onCartItemsChange={handleCartItemsChange} searchValue={searchValue} setCartItems={setCartItems} />}/>
       <Route path='/favorite' element={<Favorites/>}/>
       <Route path='*' element={<Error/>}/>
     </Routes>
@@ -36,3 +42,6 @@ function App() {
 }
 
 export default App;
+
+
+// onAddToCart={handleFavoriteItemsChange}
