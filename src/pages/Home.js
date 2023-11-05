@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import Skeleton from "../components/Skeleton"
 
 
-function Home({ onCartItemsChange, searchValue }) {
+function Home({ onCartItemsChange, searchValue, onAddToFavorite }) {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
     const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}/>)
@@ -45,8 +45,7 @@ function Home({ onCartItemsChange, searchValue }) {
                         price={val.price} 
                         image={val.imageUrl}
                         onPlus={(obj) => onAddToCart(obj)}
-                        onFavorite={() => console.log('favorite')}
-                        // onFavorite={onAddToFavorite}
+                        onFavorite={(obj) => onAddToFavorite(obj)}
                     />
                 ))
             }

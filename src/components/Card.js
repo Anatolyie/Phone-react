@@ -7,9 +7,15 @@ import { MdFavoriteBorder } from 'react-icons/md'
 import { BsPlus } from 'react-icons/bs'
 import { AiFillCheckSquare } from 'react-icons/ai'
 
-function Card({ name, image, price, onPlus, onFavorite }) {
+function Card({ name, image, price, onPlus, onFavorite, favorited = false, }) {
     const [isAdded, setIsAdded] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(favorited);
+    const obj = { 
+        id: 'id',
+        parentId: 'id', 
+        title: 'title',
+        imageUrl: 'imageUrl',
+        price };
 
     const onClickPlus = () => {
         onPlus({ name, image, price })
@@ -17,14 +23,14 @@ function Card({ name, image, price, onPlus, onFavorite }) {
     };
 
     const onClickFavorite = () => {
-        onFavorite({ name, image, price })
+        onFavorite(obj);
         setIsFavorite(!isFavorite);
-    }; 
+      };
     
 
     return (
     <div className="card">
-        <div className="card-favorite" onClick={onClickFavorite}>
+        <div className="card-favorite" onClick={() => onClickFavorite()}>
             {isFavorite ?  <MdFavorite  className='card-favorite__added'/> : <MdFavoriteBorder/> }
         </div>
         <img src={image} alt="Articles" width={133} height={112} className='card-articles'/>

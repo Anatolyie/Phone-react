@@ -20,7 +20,7 @@ function Sidebar({ onClose, onRemove, items = [] }) {
                     <p className='sidebar-descr'>{obj.name}</p>
                     <b>{obj.price}$</b>
                   </div>
-                  <IoCloseSharp onClick={onClose} className='card-remove' />
+                  <IoCloseSharp onClick={() => onRemove(obj.id)}className='card-remove' />
                 </div>
               ))}
             </div>

@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
 
-function Favorite({ favoriten = []}) {
+import {AppContext} from '../App'
+
+
+function Favorite() {
+
+    const { favorites, onAddToFavorite } = useContext(AppContext);
+
     return (
         <div>
             <h1>mY zokladki</h1>
             <div className='content-wrapper'>
-             { favoriten.length !== 0 ?
-                favoriten.map((val, index) => (
+             { favorites.length !== 0 ?
+                favorites.map((val, index) => (
                 <Card
                     key={index}
                     name={val.title}
                     price={val.price}
                     image={val.imageUrl}
-                    // onPlus={(obj) => onAddToCart(obj)}
-                    // onFavorite={(obj) => onAddToFavorite(obj)}
+                    onFavorite={onAddToFavorite}
+                    // onAddToFavorite={onAddToFavorite}
                 />
             ))
             : 
